@@ -5,7 +5,7 @@
 
 </template>
 <template>
-  <form>
+  <form class="homeText">
     <table>
     <tr>
       <td>Tapahtuma</td>
@@ -16,7 +16,7 @@
         <td><input v-model="eventTime" placeholder="30.10.2020"></td>
       </tr>
       <tr>
-        <td>Tapahtuma on tärkeä<input type="checkbox" id="eventImportant" v-model="checked"></td>
+        <td>Tapahtuma on tärkeä: <input type="checkbox" id="eventImportant" v-model="checked"></td>
         <td><input type="submit" value="Lähetä" v-on:click="sendEvent()"></td>
       </tr>
 
