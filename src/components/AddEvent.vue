@@ -1,10 +1,4 @@
 <template>
-    <p class="homeText">
-        Syötä tapahtuma <br>
-    </p>
-
-</template>
-<template>
   <form class="homeText">
     <table>
     <tr>
