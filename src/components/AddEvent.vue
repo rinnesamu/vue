@@ -1,11 +1,52 @@
 <template>
     <p class="homeText">
-        Syötä tapahtuma
+        Syötä tapahtuma <br>
     </p>
+
+</template>
+<template>
+  <form>
+    <table>
+    <tr>
+      <td>Tapahtuma</td>
+      <td><input v-model="eventName" placeholder="Luento"></td>
+    </tr>
+      <tr>
+    <td>Aika</td>
+        <td><input v-model="eventTime" placeholder="30.10.2020"></td>
+      </tr>
+      <tr>
+        <td>Tapahtuma on tärkeä<input type="checkbox" id="eventImportant" v-model="checked"></td>
+        <td><input type="submit" value="Lähetä" v-on:click="sendEvent()"></td>
+      </tr>
+
+    </table>
+  </form>
 </template>
 <script>
+    import axios from 'axios';
     export default {
-    name: 'AddEvent'
+      name: 'AddEvent',
+      data(){
+        return {
+          eventName: null,
+          eventTime: null,
+          checked: false
+        }
+
+      },
+      methods: {
+        sendEvent(){
+          axios.post(`http://localhost:3001/events`, {
+            content: this.eventName,
+            date: this.eventTime,
+            important: this.checked
+          })
+          this.eventName = null;
+          this.eventTime = null;
+          this.checked = false;
+        }
+      }
 };
 </script>
 <style scoped>

@@ -1,11 +1,35 @@
 <template>
   <p class="homeText">
-    Listaa tapahtumia
+    Tapahtumat: <br>
+    <b-table :items = "data"></b-table>
   </p>
+
 </template>
 <script>
+
+
+import axios from 'axios';
+
 export default {
-  name: 'ListEvent'
+  name: 'ListEvent',
+  data() {
+    return {
+      data: []
+    }
+  },
+  beforeMount(){
+    this.getEvents();
+  },
+  methods: {
+    async getEvents(){
+      const promise = axios.get('http://localhost:3001/events');
+      promise.then(response => {
+        //console.log("GET, response ", response.status, response.data);
+        //console.log(response.data);
+        this.data = response.data;
+      })
+    }
+  }
 };
 </script>
 <style scoped>
